@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/java/com/entity/FoodItem.java</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/web/inventory.html</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/java/com/web/InventoryServlet.java</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/web/inventory.jsp</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/java/com/web/EditFoodServlet.java</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/web/editFood.jsp</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/java/com/web/UpdateFoodServlet.java</file>
+            <file>file:/C:/Users/Shivraj/Documents/NetBeansProjects/FoodStockManagement/src/java/com/web/DeleteFoodServlet.java</file>
+        </group>
+    </open-files>
+</project-private>
