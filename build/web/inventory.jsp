@@ -27,16 +27,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodStock - Food Inventory</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -51,7 +46,6 @@
         }
 
         /* SIDEBAR */
-
         .sidebar {
             width: 240px;
             height: 100vh;
@@ -99,7 +93,6 @@
         }
 
         /* MAIN */
-
         .main {
             margin-left: 240px;
             width: calc(100% - 240px);
@@ -139,7 +132,6 @@
         }
 
         /* FILTER */
-
         .filter-card {
             background: white;
             padding: 20px;
@@ -217,7 +209,6 @@
         }
 
         /* TABLE */
-
         .card {
             background: white;
             padding: 25px;
@@ -252,7 +243,6 @@
         }
 
         /* STATUS */
-
         .low-stock {
             display: inline-block;
             color: #b42318;
@@ -274,7 +264,6 @@
         }
 
         /* ACTION BUTTONS */
-
         .edit-btn {
             display: inline-block;
             background: #2e7d32;
@@ -313,9 +302,7 @@
         }
 
         /* RESPONSIVE */
-
         @media (max-width: 900px) {
-
             .sidebar {
                 width: 200px;
             }
@@ -330,11 +317,9 @@
                 align-items: flex-start;
                 gap: 15px;
             }
-
         }
 
         @media (max-width: 650px) {
-
             body {
                 display: block;
             }
@@ -350,17 +335,13 @@
                 width: 100%;
                 padding: 20px;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
 <!-- SIDEBAR -->
-
 <div class="sidebar">
 
     <div class="logo">
@@ -368,7 +349,6 @@
     </div>
 
     <ul class="menu">
-
         <li>
             <a href="${pageContext.request.contextPath}/dashboard">
                 Dashboard
@@ -376,8 +356,7 @@
         </li>
 
         <li>
-            <a href="${pageContext.request.contextPath}/inventory"
-               class="active">
+            <a href="${pageContext.request.contextPath}/inventory" class="active">
                 Food Inventory
             </a>
         </li>
@@ -417,38 +396,24 @@
                 Reports
             </a>
         </li>
-
     </ul>
-
 </div>
 
-
 <!-- MAIN CONTENT -->
-
 <div class="main">
 
     <div class="header">
-
         <div>
-
             <h1>Food Inventory</h1>
-
-            <p>
-                Manage and monitor your food stock
-            </p>
-
+            <p>Manage and monitor your food stock</p>
         </div>
 
-        <a href="${pageContext.request.contextPath}/index.html"
-           class="add-btn">
+        <a href="${pageContext.request.contextPath}/index.html" class="add-btn">
             + Add Food
         </a>
-
     </div>
 
-
     <!-- FILTER -->
-
     <div class="filter-card">
 
         <form action="${pageContext.request.contextPath}/inventory"
@@ -456,23 +421,17 @@
               class="filter-form">
 
             <div class="filter-group">
-
                 <label>Search Food</label>
-
                 <input type="text"
                        name="search"
                        placeholder="Enter food name..."
                        value="<%= search %>">
-
             </div>
 
-
             <div class="filter-group">
-
                 <label>Category</label>
 
                 <select name="category">
-
                     <option value="ALL"
                         <%= "ALL".equals(category) ? "selected" : "" %>>
                         All Categories
@@ -517,18 +476,13 @@
                         <%= "Meat".equals(category) ? "selected" : "" %>>
                         Meat
                     </option>
-
                 </select>
-
             </div>
 
-
             <div class="filter-group">
-
                 <label>Stock Status</label>
 
                 <select name="status">
-
                     <option value="ALL"
                         <%= "ALL".equals(status) ? "selected" : "" %>>
                         All Stock
@@ -543,16 +497,11 @@
                         <%= "AVAILABLE".equals(status) ? "selected" : "" %>>
                         Available Stock
                     </option>
-
                 </select>
-
             </div>
 
-
             <div class="filter-buttons">
-
-                <button type="submit"
-                        class="search-btn">
+                <button type="submit" class="search-btn">
                     Search
                 </button>
 
@@ -560,24 +509,16 @@
                    class="clear-btn">
                     Clear
                 </a>
-
             </div>
-
         </form>
-
     </div>
 
-
     <!-- INVENTORY TABLE -->
-
     <div class="card">
-
         <table>
 
             <thead>
-
                 <tr>
-
                     <th>ID</th>
                     <th>Food Name</th>
                     <th>Category</th>
@@ -589,90 +530,50 @@
                     <th>Expiry Date</th>
                     <th>Status</th>
                     <th>Actions</th>
-
                 </tr>
-
             </thead>
 
-
             <tbody>
-
             <%
                 if (foodList != null && !foodList.isEmpty()) {
+
+                    int rowNumber = 1;
 
                     for (FoodItem food : foodList) {
 
                         boolean lowStock =
-                                food.getQuantity()
-                                <= food.getMinimumStock();
+                                food.getQuantity() <= food.getMinimumStock();
             %>
 
                 <tr>
+                    <!-- Sequential display number; database ID stays unchanged -->
+                    <td><%= rowNumber++ %></td>
 
                     <td>
-                        <%= food.getId() %>
+                        <strong><%= food.getFoodName() %></strong>
                     </td>
 
-                    <td>
-                        <strong>
-                            <%= food.getFoodName() %>
-                        </strong>
-                    </td>
-
-                    <td>
-                        <%= food.getCategory() %>
-                    </td>
-
-                    <td>
-                        <%= food.getQuantity() %>
-                    </td>
-
-                    <td>
-                        <%= food.getUnit() %>
-                    </td>
+                    <td><%= food.getCategory() %></td>
+                    <td><%= food.getQuantity() %></td>
+                    <td><%= food.getUnit() %></td>
 
                     <td>
                         ₹ <%= String.format("%.2f", food.getPrice()) %>
                     </td>
 
+                    <td><%= food.getMinimumStock() %></td>
+                    <td><%= food.getSupplier() %></td>
+                    <td><%= food.getExpiryDate() %></td>
+
                     <td>
-                        <%= food.getMinimumStock() %>
+                        <% if (lowStock) { %>
+                            <span class="low-stock">LOW STOCK</span>
+                        <% } else { %>
+                            <span class="normal-stock">IN STOCK</span>
+                        <% } %>
                     </td>
 
                     <td>
-                        <%= food.getSupplier() %>
-                    </td>
-
-                    <td>
-                        <%= food.getExpiryDate() %>
-                    </td>
-
-                    <td>
-
-                        <%
-                            if (lowStock) {
-                        %>
-
-                            <span class="low-stock">
-                                LOW STOCK
-                            </span>
-
-                        <%
-                            } else {
-                        %>
-
-                            <span class="normal-stock">
-                                IN STOCK
-                            </span>
-
-                        <%
-                            }
-                        %>
-
-                    </td>
-
-                    <td>
-
                         <a class="edit-btn"
                            href="${pageContext.request.contextPath}/editFood?id=<%= food.getId() %>">
                             Edit
@@ -683,40 +584,28 @@
                            onclick="return confirm('Are you sure you want to delete this food item?');">
                             Delete
                         </a>
-
                     </td>
-
                 </tr>
 
             <%
                     }
-
                 } else {
             %>
 
                 <tr>
-
-                    <td colspan="11"
-                        class="empty">
-
+                    <td colspan="11" class="empty">
                         No food items available.
-
                     </td>
-
                 </tr>
 
             <%
                 }
             %>
-
             </tbody>
-
         </table>
-
     </div>
 
 </div>
 
 </body>
-
 </html>
