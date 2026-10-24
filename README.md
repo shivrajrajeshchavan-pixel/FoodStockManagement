@@ -10,8 +10,8 @@
 | Sr. No. | Name | PRN / Roll Number | Role |
 |:---:|:---|:---:|:---|
 | 1 | **Shivraj Chavan** | `RBT24CB047` | Full-stack & Database Development |
-| 2 | **Teammate** | `RBT24CB037` | System Design & Testing |
-| 3 | **Teammate** | `RBT24CB050` | UI/UX & Documentation |
+| 2 | **Yogesh Bhawal** | `RBT24CB037` | System Design & Testing |
+| 3 | **Vedant Deshmukh** | `RBT24CB050` | UI/UX & Documentation |
 
 ---
 
