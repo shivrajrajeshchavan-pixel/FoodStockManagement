@@ -1,3 +1,4 @@
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.entity.StockTransaction" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -11,16 +12,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction History - FoodStock</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -34,8 +30,7 @@
             min-height: 100vh;
         }
 
-        /* ================= SIDEBAR ================= */
-
+        /* SIDEBAR */
         .sidebar {
             width: 240px;
             height: 100vh;
@@ -82,16 +77,14 @@
             background: #2e7d32;
         }
 
-        /* ================= MAIN ================= */
-
+        /* MAIN */
         .main {
             margin-left: 240px;
             width: calc(100% - 240px);
             padding: 30px;
         }
 
-        /* ================= HEADER ================= */
-
+        /* HEADER */
         .header {
             margin-bottom: 25px;
         }
@@ -107,8 +100,7 @@
             font-size: 14px;
         }
 
-        /* ================= TABLE CARD ================= */
-
+        /* TABLE */
         .table-card {
             background: white;
             padding: 25px;
@@ -142,8 +134,7 @@
             background: #f5faf7;
         }
 
-        /* ================= BADGES ================= */
-
+        /* TRANSACTION BADGES */
         .stock-in {
             display: inline-block;
             background: #e7f6ec;
@@ -164,18 +155,15 @@
             font-size: 11px;
         }
 
-        /* ================= EMPTY ================= */
-
+        /* EMPTY STATE */
         .empty {
             text-align: center;
             padding: 45px;
             color: #777;
         }
 
-        /* ================= RESPONSIVE ================= */
-
+        /* RESPONSIVE */
         @media (max-width: 900px) {
-
             .sidebar {
                 width: 200px;
             }
@@ -184,15 +172,9 @@
                 margin-left: 200px;
                 width: calc(100% - 200px);
             }
-
         }
 
         @media (max-width: 650px) {
-
-            body {
-                display: block;
-            }
-
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -208,18 +190,13 @@
             .table-card {
                 padding: 15px;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
-
-<!-- ================= SIDEBAR ================= -->
-
+<!-- SIDEBAR -->
 <aside class="sidebar">
 
     <div class="logo">
@@ -227,7 +204,6 @@
     </div>
 
     <ul class="menu">
-
         <li>
             <a href="${pageContext.request.contextPath}/dashboard">
                 Dashboard
@@ -276,66 +252,45 @@
                 Reports
             </a>
         </li>
-
     </ul>
 
 </aside>
 
-
-<!-- ================= MAIN CONTENT ================= -->
-
+<!-- MAIN CONTENT -->
 <main class="main">
 
     <div class="header">
-
         <h1>Transaction History</h1>
-
-        <p>
-            View all stock-in and stock-out transactions
-        </p>
-
+        <p>View all stock-in and stock-out transactions</p>
     </div>
-
-
-    <!-- TABLE -->
 
     <div class="table-card">
 
         <table>
-
             <thead>
-
                 <tr>
-
-                    <th>ID</th>
-
+                    <th>Sr. No.</th>
                     <th>Food Item</th>
-
                     <th>Transaction Type</th>
-
                     <th>Quantity</th>
-
                     <th>Date</th>
-
                 </tr>
-
             </thead>
 
-
             <tbody>
-
                 <%
                     if (transactionList != null
                             && !transactionList.isEmpty()) {
+
+                        int rowNumber = 1;
 
                         for (StockTransaction transaction
                                 : transactionList) {
                 %>
 
                 <tr>
-
                     <td>
-                        <%= transaction.getId() %>
+                        <%= rowNumber++ %>
                     </td>
 
                     <td>
@@ -345,28 +300,18 @@
                     </td>
 
                     <td>
-
                         <%
-                            if ("STOCK IN".equals(
-                                    transaction.getType())) {
+                            if ("STOCK IN".equals(transaction.getType())
+                                    || "IN".equalsIgnoreCase(transaction.getType())) {
                         %>
-
-                            <span class="stock-in">
-                                STOCK IN
-                            </span>
-
+                            <span class="stock-in">STOCK IN</span>
                         <%
                             } else {
                         %>
-
-                            <span class="stock-out">
-                                STOCK OUT
-                            </span>
-
+                            <span class="stock-out">STOCK OUT</span>
                         <%
                             }
                         %>
-
                     </td>
 
                     <td>
@@ -376,32 +321,23 @@
                     <td>
                         <%= transaction.getTransactionDate() %>
                     </td>
-
                 </tr>
 
                 <%
                         }
-
                     } else {
                 %>
 
                 <tr>
-
-                    <td colspan="5"
-                        class="empty">
-
+                    <td colspan="5" class="empty">
                         No transactions found.
-
                     </td>
-
                 </tr>
 
                 <%
                     }
                 %>
-
             </tbody>
-
         </table>
 
     </div>
@@ -409,5 +345,4 @@
 </main>
 
 </body>
-
 </html>

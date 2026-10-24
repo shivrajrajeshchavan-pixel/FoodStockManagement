@@ -1,3 +1,4 @@
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
@@ -8,16 +9,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expiry Tracking - FoodStock</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -30,8 +26,6 @@
             color: #263238;
             min-height: 100vh;
         }
-
-        /* ================= SIDEBAR ================= */
 
         .sidebar {
             width: 240px;
@@ -79,15 +73,11 @@
             background: #2e7d32;
         }
 
-        /* ================= MAIN ================= */
-
         .main {
             margin-left: 240px;
             width: calc(100% - 240px);
             padding: 30px;
         }
-
-        /* ================= HEADER ================= */
 
         .header {
             margin-bottom: 25px;
@@ -103,8 +93,6 @@
             color: #777;
             font-size: 14px;
         }
-
-        /* ================= SUMMARY CARDS ================= */
 
         .cards {
             display: flex;
@@ -139,8 +127,6 @@
             color: #b7791f;
         }
 
-        /* ================= TABLE ================= */
-
         .table-container {
             background: white;
             border-radius: 15px;
@@ -174,8 +160,6 @@
             background: #f5faf7;
         }
 
-        /* ================= DAYS STATUS ================= */
-
         .expired {
             color: #b42318;
             font-weight: bold;
@@ -190,8 +174,6 @@
             color: #176b35;
             font-weight: bold;
         }
-
-        /* ================= BADGES ================= */
 
         .badge {
             display: inline-block;
@@ -216,8 +198,6 @@
             color: #176b35;
         }
 
-        /* ================= EMPTY ================= */
-
         .no-items {
             text-align: center;
             padding: 45px 20px;
@@ -226,10 +206,7 @@
             font-weight: bold;
         }
 
-        /* ================= RESPONSIVE ================= */
-
         @media (max-width: 900px) {
-
             .sidebar {
                 width: 200px;
             }
@@ -242,15 +219,9 @@
             .cards {
                 flex-wrap: wrap;
             }
-
         }
 
         @media (max-width: 650px) {
-
-            body {
-                display: block;
-            }
-
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -274,17 +245,11 @@
             .table-container {
                 padding: 15px;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
-
-
-<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
@@ -293,75 +258,24 @@
     </div>
 
     <ul class="menu">
-
-        <li>
-            <a href="${pageContext.request.contextPath}/dashboard">
-                Dashboard
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/inventory">
-                Food Inventory
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/index.html">
-                Add Food
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/stockTransaction">
-                Stock Transactions
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/transactionHistory">
-                Transaction History
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/lowStock">
-                Low Stock Alerts
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/expiry"
-               class="active">
-                Expiry Tracking
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/reports">
-                Reports
-            </a>
-        </li>
-
+        <li><a href="${pageContext.request.contextPath}/dashboard">Dashboard</a></li>
+        <li><a href="${pageContext.request.contextPath}/inventory">Food Inventory</a></li>
+        <li><a href="${pageContext.request.contextPath}/index.html">Add Food</a></li>
+        <li><a href="${pageContext.request.contextPath}/stockTransaction">Stock Transactions</a></li>
+        <li><a href="${pageContext.request.contextPath}/transactionHistory">Transaction History</a></li>
+        <li><a href="${pageContext.request.contextPath}/lowStock">Low Stock Alerts</a></li>
+        <li><a href="${pageContext.request.contextPath}/expiry" class="active">Expiry Tracking</a></li>
+        <li><a href="${pageContext.request.contextPath}/reports">Reports</a></li>
     </ul>
 
 </aside>
 
-
-<!-- ================= MAIN CONTENT ================= -->
-
 <main class="main">
 
     <div class="header">
-
         <h1>Expiry Tracking</h1>
-
-        <p>
-            Monitor expired and upcoming food expiry dates.
-        </p>
-
+        <p>Monitor expired and upcoming food expiry dates.</p>
     </div>
-
 
     <%
         List<FoodItem> expiryList =
@@ -373,77 +287,44 @@
         int expiredCount = 0;
         int nearExpiryCount = 0;
 
-        if (expiryList != null) {
-
+        if (expiryList != null && today != null) {
             for (FoodItem food : expiryList) {
-
                 if (food.getExpiryDate() != null) {
-
                     long days = ChronoUnit.DAYS.between(
-                            today,
-                            food.getExpiryDate()
-                    );
+                            today, food.getExpiryDate());
 
                     if (days < 0) {
                         expiredCount++;
-                    }
-                    else if (days <= 7) {
+                    } else if (days <= 7) {
                         nearExpiryCount++;
                     }
-
                 }
-
             }
-
         }
     %>
-
-
-    <!-- ================= SUMMARY CARDS ================= -->
 
     <div class="cards">
 
         <div class="card">
-
-            <h3>
-                Expired Items
-            </h3>
-
-            <p class="expired-count">
-                <%= expiredCount %>
-            </p>
-
+            <h3>Expired Items</h3>
+            <p class="expired-count"><%= expiredCount %></p>
         </div>
 
-
         <div class="card">
-
-            <h3>
-                Expiring Within 7 Days
-            </h3>
-
-            <p class="warning-count">
-                <%= nearExpiryCount %>
-            </p>
-
+            <h3>Expiring Within 7 Days</h3>
+            <p class="warning-count"><%= nearExpiryCount %></p>
         </div>
 
     </div>
-
-
-    <!-- ================= EXPIRY TABLE ================= -->
 
     <div class="table-container">
 
         <% if (expiryList != null && !expiryList.isEmpty()) { %>
 
             <table>
-
                 <thead>
-
                     <tr>
-
-                        <th>ID</th>
+                        <th>Sr. No.</th>
                         <th>Food Name</th>
                         <th>Category</th>
                         <th>Quantity</th>
@@ -451,101 +332,62 @@
                         <th>Expiry Date</th>
                         <th>Days Remaining</th>
                         <th>Status</th>
-
                     </tr>
-
                 </thead>
 
                 <tbody>
 
-                    <% for (FoodItem food : expiryList) {
+                    <%
+                        int rowNumber = 1;
 
-                        if (food.getExpiryDate() == null) {
-                            continue;
-                        }
+                        for (FoodItem food : expiryList) {
 
-                        long days = ChronoUnit.DAYS.between(
-                                today,
-                                food.getExpiryDate()
-                        );
+                            if (food.getExpiryDate() == null || today == null) {
+                                continue;
+                            }
+
+                            long days = ChronoUnit.DAYS.between(
+                                    today, food.getExpiryDate());
                     %>
 
-                        <tr>
+                    <tr>
+                        <td><%= rowNumber++ %></td>
 
-                            <td>
-                                <%= food.getId() %>
-                            </td>
+                        <td>
+                            <strong><%= food.getFoodName() %></strong>
+                        </td>
 
-                            <td>
-                                <strong>
-                                    <%= food.getFoodName() %>
-                                </strong>
-                            </td>
+                        <td><%= food.getCategory() %></td>
+                        <td><%= food.getQuantity() %></td>
+                        <td><%= food.getUnit() %></td>
+                        <td><%= food.getExpiryDate() %></td>
 
-                            <td>
-                                <%= food.getCategory() %>
-                            </td>
+                        <td>
+                            <% if (days < 0) { %>
+                                <span class="expired">
+                                    Expired <%= Math.abs(days) %> day(s) ago
+                                </span>
+                            <% } else { %>
+                                <span class="<%= days <= 7 ? "near-expiry" : "safe" %>">
+                                    <%= days %> day(s)
+                                </span>
+                            <% } %>
+                        </td>
 
-                            <td>
-                                <%= food.getQuantity() %>
-                            </td>
-
-                            <td>
-                                <%= food.getUnit() %>
-                            </td>
-
-                            <td>
-                                <%= food.getExpiryDate() %>
-                            </td>
-
-                            <td>
-
-                                <% if (days < 0) { %>
-
-                                    <span class="expired">
-                                        Expired <%= Math.abs(days) %> day(s) ago
-                                    </span>
-
-                                <% } else { %>
-
-                                    <span class="<%= days <= 7 ? "near-expiry" : "safe" %>">
-                                        <%= days %> day(s)
-                                    </span>
-
-                                <% } %>
-
-                            </td>
-
-                            <td>
-
-                                <% if (days < 0) { %>
-
-                                    <span class="badge badge-expired">
-                                        EXPIRED
-                                    </span>
-
-                                <% } else if (days <= 7) { %>
-
-                                    <span class="badge badge-warning">
-                                        EXPIRING SOON
-                                    </span>
-
-                                <% } else { %>
-
-                                    <span class="badge badge-safe">
-                                        SAFE
-                                    </span>
-
-                                <% } %>
-
-                            </td>
-
-                        </tr>
+                        <td>
+                            <% if (days < 0) { %>
+                                <span class="badge badge-expired">EXPIRED</span>
+                            <% } else if (days <= 7) { %>
+                                <span class="badge badge-warning">EXPIRING SOON</span>
+                            <% } else { %>
+                                <span class="badge badge-safe">SAFE</span>
+                            <% } %>
+                        </td>
+                    </tr>
 
                     <% } %>
 
                 </tbody>
-
             </table>
 
         <% } else { %>
@@ -561,5 +403,4 @@
 </main>
 
 </body>
-
 </html>

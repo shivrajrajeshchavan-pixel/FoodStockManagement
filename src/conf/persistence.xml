@@ -11,25 +11,30 @@
                       transaction-type="RESOURCE_LOCAL">
 
         <class>com.entity.FoodItem</class>
-
         <class>com.entity.StockTransaction</class>
 
         <properties>
 
             <property name="jakarta.persistence.jdbc.driver"
-                      value="org.apache.derby.jdbc.ClientDriver"/>
+                      value="com.mysql.cj.jdbc.Driver"/>
 
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:derby://localhost:1527/foodStockDB;create=true"/>
+                      value="jdbc:mysql://localhost:3306/foodstockdb?createDatabaseIfNotExist=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
 
             <property name="jakarta.persistence.jdbc.user"
-                      value="app"/>
+                      value="root"/>
 
             <property name="jakarta.persistence.jdbc.password"
-                      value="app"/>
+                      value="123456789"/>
 
             <property name="jakarta.persistence.schema-generation.database.action"
                       value="create"/>
+
+            <property name="eclipselink.target-database"
+                      value="MySQL"/>
+
+            <property name="eclipselink.logging.level"
+                      value="INFO"/>
 
         </properties>
 
